@@ -136,6 +136,7 @@ body {
   grid-gap: 2.25px; /* been looking for this ! */
   grid-template-columns: repeat(4, auto);
   grid-template-areas:
+    ". . . modulus"
     ". . . divide" /*unnamed areas*/
     ". . . times"
     "seven eight nine minus" /*named areas*/
@@ -215,6 +216,9 @@ body {
 .divide {
   grid-area: divide;
 }
+.modulus {
+  grid-area: modulus;
+}
 
 [data-type="equal"] {
   grid-area: equal;
@@ -255,5 +259,19 @@ body {
 [data-type="clear"]:active,
 [data-type="clearAll"]:active,
 [data-type="back"]:active {
-  background: lightgray;
+    animation-name: clickAnimation;
+    animation-duration: 250ms;
+    animation-timing-function: ease-in-out;   
+}
+
+@keyFrames clickAnimation {
+  
+  0.00% { background-color: #e4e7eb;   }
+   14.29% { background-color: #e4e7eb; }
+   28.57% { background-color: #e2e5e9; }
+   42.86% { background-color: #d3d8de;  }
+   57.14% { background-color: #d3d8de;   }
+   71.43% { background-color: #e2e5e9; }
+   85.71% { background-color: #e4e7eb; }
+  100.00% { background-color: #e4e7eb; }
 }
