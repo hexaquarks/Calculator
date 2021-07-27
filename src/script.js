@@ -6,7 +6,7 @@ const smallDisplay = calculator.querySelector(".calculator__smallDisplayText")
 const smallOperatorDisplay = calculator.querySelector(
   ".calculator__smallOperatorDisplay"
 );
-const { previousKeyType } = calculator.dataset;
+const previousKeyType = calculator.dataset.previousKeyType;
 
 //quick fix...
 // smallDisplay.textContent = String.fromCharCode(160);
@@ -31,11 +31,9 @@ keys.addEventListener("click", (event) => {
       break;
 
     case "operator":
-
-
-      if (display.textContent !== "invalid input") {
-        executeOperation(displayValue, keyValue);
-      }
+      if (display.textContent === "invalid input") return;
+    
+      executeOperation(displayValue, keyValue, calculator.dataset.previousKeyType);
       break;
 
     case "expression":
@@ -73,6 +71,7 @@ keys.addEventListener("click", (event) => {
 
   enableArrowsVisibility();
   calculator.dataset.previousKeyType = type;
+  console.log(previousKeyType);
 
 
 });
@@ -80,20 +79,20 @@ keys.addEventListener("click", (event) => {
 document.addEventListener("click", (event) => {
   if (!event.target.closest("button"))
     if (event.target.id === "left_arrow") {
-      translateSmallDisplay("left");1
+      translateSmallDisplay("left");
     } else if (event.target.id === "right_arrow") {
       translateSmallDisplay("right");
     }
 });
 
-//get the left position of small display field relative to its parent container using getBoundingClientRec *before* the x-transition.
+//get the left position of small display field relative to its parent container 
+// using getBoundingClientRec *before* the x-transition.
 smallDisplay.parentNode.addEventListener('transitionend', e => {
 
   const long = smallDisplay.parentNode.getBoundingClientRect().left;
   const short = calculator.getBoundingClientRect().left;
 
   const diff = long - short;
-
   enableArrowsVisibility();
 });
 
@@ -103,8 +102,7 @@ window.addEventListener("keydown", (event) => {
   let numbersArray = (Array.from(Array(10).keys())).map(String);
 
 
-  if (numbersArray.includes(event.key)
-  ) {
+  if (numbersArray.includes(event.key)) {
     executeNumber(
       event.key,
       display.textContent,

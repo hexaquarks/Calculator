@@ -3,28 +3,33 @@ const operatorPlaceholder = '';
 
 function smallDisplaySuccessiveExpression(expression, displayValue, previousKeyType) {
   if (expression === '𝑥²') expression = '²';
+  if (expression === '±') expression = '-';
   //expression == '-' || '√' || '²' || 10x || sinx
   //TODO 10x sinx
+  let firstChar =smallDisplay.textContent.charAt(0);
+  let lastChar = smallDisplay.textContent.charAt(0);
+  let text = smallDisplay.textContent;
+
+  if(text === "invalid input" || text === "undefined") return; 
+
   if (
-    smallDisplay.textContent !== String.fromCharCode(160) &&
-    previousKeyType !== "equal"
+    text !== String.fromCharCode(160) && previousKeyType !== "equal"
   ) {
     //successive negation hits
     if (
-      smallDisplay.textContent.charAt(0) === "√" ||
-      (smallDisplay.textContent.charAt(smallDisplay.textContent.length - 1) ===
-        "²" &&
-        smallDisplay.textContent.charAt(0) === "(") ||
-      smallDisplay.textContent.charAt(0) === "-"
-    ) {
-      if (expression === "√" || expression === "-") {
+      firstChar === "√" 
+      || (lastChar === "²" && firstChar === "(" )
+      || firstChar === "-"
+      || firstChar === "s") {
+      if (expression === "√" || expression === "-" || expression === "sin") {
+        
         smallDisplay.textContent =
           expression + "(" + smallDisplay.textContent + ")";
       } else {
-        smallDisplay.textContent = "(" + smallDisplay.textContent + ")²";
+        smallDisplay.textContent = "(" + text + ")²";
       }
     } else {
-      if (expression === "√" || expression === "-") {
+      if (expression === "√" || expression === "-" || expression === "sin") {
         smallDisplay.textContent = calculator.dataset.firstNumber + " " + calculator.dataset.operator +
           " " + expression + "(" + displayValue + ")";
       } else {
@@ -33,7 +38,7 @@ function smallDisplaySuccessiveExpression(expression, displayValue, previousKeyT
       }
     }
   } else {
-    if (expression === "√" || expression === "-") {
+    if (expression === "√" || expression === "-" || expression === "sin") {
       smallDisplay.textContent = expression + "(" + displayValue + ")";
     } else {
       smallDisplay.textContent = "(" + displayValue + ")²";
@@ -43,6 +48,7 @@ function smallDisplaySuccessiveExpression(expression, displayValue, previousKeyT
 }
 
 function updateSmallDisplay(firstNumber, operator) {
+  
   smallDisplay.textContent = firstNumber;
   smallOperatorDisplay.textContent = operator;
 }
@@ -59,17 +65,17 @@ function enableArrowsVisibility() {
   const short = calculator.getBoundingClientRect().left;
   const diff = long - short;
 
-  if(diff < 29) {
+  if (diff < 29) {
     left_arrow.style.opacity = "100%";
-  }else {
+  } else {
     left_arrow.style.opacity = "20%";
     // operatorPlaceholder = smallOperatorDisplay.textContent;
     // smallOperatorDisplay.textContent = ' ';
   }
 
-  if((diff + smallDisplay.parentNode.offsetWidth) > (calculator.offsetWidth - 29)){
+  if ((diff + smallDisplay.parentNode.offsetWidth) > (calculator.offsetWidth - 29)) {
     right_arrow.style.opacity = "100%";
-  }else {
+  } else {
     right_arrow.style.opacity = "20%";
     // smallOperatorDisplay.textContent = operatorPlaceholder;
 
