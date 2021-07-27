@@ -19,6 +19,7 @@ function updateDisplayFontSize() {
       new_font_index++;
 
     } while (context.measureText(text).width >= calculator.offsetWidth - 100);
+    
     display.style.fontSize = (font_size - new_font_index / 10) + "px";
   }
 }

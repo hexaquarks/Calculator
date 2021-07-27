@@ -100,20 +100,18 @@ body {
 [alt~="left_arrow"] {
   width: calc(0.29rem * 1.2 * 1.2);
   height: calc(0.45rem * 1.2 * 1.2);
-  bottom: 41.5px;
+  bottom:39px;
   position: relative;
   z-index: 20;
   visibility: visible;
   opacity: 20%;
 }
 [alt~="right_arrow"] {
-  top: 14%;
   left: 11px;
   transform: scalex(-1);
 }
 [alt~="left_arrow"] {
-  right: 95%;
-  bottom: 41.5px;
+  right: 92%;
 }
 
 [alt~="left_arrow"]:hover,
