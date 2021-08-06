@@ -1,0 +1,17 @@
+{
+  "homepage": "http://hexaquarks.github.io/Javascript_Calculator",
+  "name": "javascript_calculator",
+  "version": "1.0.0",
+  "description": "Calculator made in native JS + CSS + HTML.",
+  "main": "index.js",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}

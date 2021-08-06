@@ -48,8 +48,12 @@ function smallDisplaySuccessiveExpression(expression, displayValue, previousKeyT
 }
 
 function updateSmallDisplay(firstNumber, operator) {
-  
-  smallDisplay.textContent = firstNumber;
+  // if(smallDisplay.textContent.charAt(smallDisplay.textContent.length-1) !== ')') {
+  //   smallDisplay.textContent = firstNumber; 
+  // }
+  // smallOperatorDisplay.textContent = operator; 
+
+  smallDisplay.textContent = firstNumber; 
   smallOperatorDisplay.textContent = operator;
 }
 
