@@ -43,6 +43,7 @@ body {
   border-radius: 0.5em;
   overflow: hidden; /* allows the border-radius to be visible. */
   width: 14rem;
+  height: 500px;
 }
 
 .calculator__display {
@@ -130,7 +131,7 @@ body {
     "four five six plus"
     "one two three equal"
     "pm zero decimal equal";
-  height: 60vh;
+  height:430px;
   width: 100%;
   border: none; /* doenst work ? */
 }
